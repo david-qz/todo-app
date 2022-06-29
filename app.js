@@ -64,10 +64,12 @@ async function handleEdit(todo, task) {
 }
 
 async function handleDelete(todo) {
-    // ***
     // 1. Get the index of the current todo
     // 2. Call the delete service function
     // 3. remove the todo from the todos array using splice
+    const index = todos.findIndex(v => v.id === todo.id);
+    await deleteTodo(todo);
+    todos.splice(index, 1);
 
     display();
 }
