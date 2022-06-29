@@ -19,8 +19,18 @@ export async function getAllTodos() {
 
 export async function createTodo(todo) {
     // insert a todo
+    const { data, error } = await client
+        .from(TABLE)
+        .insert(todo)
+        .single();
 
-    return response.data;
+    if (error) {
+        // eslint-disable-next-line no-console
+        console.log('Error in createTodo(): ' + error.message);
+        return {};
+    }
+
+    return data;
 }
 
 export async function updateTodo(todo) {
