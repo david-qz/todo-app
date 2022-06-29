@@ -32,7 +32,7 @@ async function handleAdd(task) {
         complete: false,
     });
 
-    todos.push(todo);
+    if (todo) todos.push(todo);
 
     display();
 }
@@ -43,9 +43,11 @@ async function handleComplete(todo) {
     // 3. Update that index of the array with the result of the update service function
     todo.complete = !todo.complete;
     const index = todos.findIndex((v) => v.id === todo.id);
+    if (index === -1) return;
 
     const newTodo = await updateTodo(todo);
-    todos.splice(index, 1, newTodo);
+
+    if (newTodo) todos.splice(index, 1, newTodo);
 
     display();
 }
@@ -56,9 +58,11 @@ async function handleEdit(todo, task) {
     // 3. Update that index of the array with the result of the update service function
     todo.description = task;
     const index = todos.findIndex((v) => v.id === todo.id);
+    if (index === -1) return;
 
     const newTodo = await updateTodo(todo);
-    todos.splice(index, 1, newTodo);
+
+    if (newTodo) todos.splice(index, 1, newTodo);
 
     display();
 }
@@ -68,8 +72,11 @@ async function handleDelete(todo) {
     // 2. Call the delete service function
     // 3. remove the todo from the todos array using splice
     const index = todos.findIndex(v => v.id === todo.id);
-    await deleteTodo(todo);
-    todos.splice(index, 1);
+    if (index === -1) return;
+
+    const deletedTodo = await deleteTodo(todo);
+
+    if (deletedTodo) todos.splice(index, 1);
 
     display();
 }

@@ -28,7 +28,7 @@ export async function createTodo(todo) {
     if (error) {
         // eslint-disable-next-line no-console
         console.log('Error in createTodo(): ' + error.message);
-        return {};
+        return null;
     }
 
     return data;
@@ -48,7 +48,7 @@ export async function updateTodo(todo) {
     if (error) {
         // eslint-disable-next-line no-console
         console.log('Error in updateTodo(): ' + error.message);
-        return {};
+        return null;
     }
 
     return data;
@@ -65,7 +65,7 @@ export async function deleteTodo(todo) {
     if (error) {
         // eslint-disable-next-line no-console
         console.log('Error in deleteTodo(): ' + error.message);
-        return {};
+        return null;
     }
 
     return data;
