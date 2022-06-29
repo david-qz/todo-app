@@ -1,9 +1,20 @@
 import { client } from './client.js';
 
+const TABLE = 'todos';
+
 export async function getAllTodos() {
     // get all the todos
+    const { data, error } = await client
+        .from(TABLE)
+        .select();
 
-    return response.data;
+    if (error) {
+        // eslint-disable-next-line no-console
+        console.log('Error in getAllTodos(): ' + error.message);
+        return [];
+    }
+
+    return data;
 }
 
 export async function createTodo(todo) {

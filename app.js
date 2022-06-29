@@ -14,7 +14,8 @@ async function handlePageLoad() {
     user = getUser();
     protectPage(user);
 
-    // *** set todos state from get all service function
+    // set todos state from get all service function
+    todos = await getAllTodos();
 
     display();
 }
