@@ -35,8 +35,22 @@ export async function createTodo(todo) {
 
 export async function updateTodo(todo) {
     // update todo
+    const { data, error } = await client
+        .from(TABLE)
+        .update({
+            description: todo.description,
+            complete: todo.complete,
+        })
+        .match({ id: todo.id })
+        .single();
 
-    return response.data;
+    if (error) {
+        // eslint-disable-next-line no-console
+        console.log('Error in updateTodo(): ' + error.message);
+        return {};
+    }
+
+    return data;
 }
 
 export async function deleteTodo(todo) {
