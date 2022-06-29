@@ -6,7 +6,8 @@ export async function getAllTodos() {
     // get all the todos
     const { data, error } = await client
         .from(TABLE)
-        .select();
+        .select()
+        .order('created_at', { ascending: true });
 
     if (error) {
         // eslint-disable-next-line no-console
