@@ -89,7 +89,7 @@ const Todos = createTodos(document.querySelector('.todo-list'), {
 
 const AddTodo = createAddTodo(document.querySelector('.new-todo'), { handleAdd });
 
-// Components 
+// Components
 const User = createUser(
     document.querySelector('#user'),
     { handleSignOut }
